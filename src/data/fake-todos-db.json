@@ -1,0 +1,33 @@
+[
+  {
+    "title": "Skonfigurować repozytorium projektu",
+    "description": "Sklonować repo, zainstalować zależności (npm install) i uruchomić dev server",
+    "priority": "high",
+    "category": "praca",
+    "dueDate": "2026-09-25"
+  },
+  {
+    "title": "Przeczytać dokumentację orkiestracji agentów",
+    "description": "docs/orchestration/ORCHESTRATION.md",
+    "priority": "medium",
+    "category": "nauka"
+  },
+  {
+    "title": "Uruchomić pełny zestaw testów Playwright",
+    "description": "npx playwright test — sprawdzić czy wszystko jest zielone",
+    "priority": "high",
+    "category": "praca"
+  },
+  {
+    "title": "Zrobić zakupy na weekend",
+    "priority": "low",
+    "category": "dom",
+    "dueDate": "2026-09-27"
+  },
+  {
+    "title": "Zaplanować retrospektywę sprintu",
+    "description": "Przygotować pytania dla zespołu na podstawie raportów agentów",
+    "priority": "medium",
+    "category": "praca"
+  }
+]

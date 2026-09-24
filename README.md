@@ -9,6 +9,25 @@ Prawdziwym celem tego repozytorium jest jednak system 11 wyspecjalizowanych agen
 testują i recenzują dowolną nową funkcjonalność tej aplikacji — pełny opis architektury
 orkiestracji znajduje się w [docs/orchestration/ORCHESTRATION.md](./docs/orchestration/ORCHESTRATION.md).
 
+## O projekcie
+
+To eksperymentalne, weekendowe demo pokazuje dwa podejścia do orkiestracji agentów:
+
+- **orkiestrator AI** — agent oparty na LLM, który podejmuje decyzje w sposób niedeterministyczny;
+- **orkiestrator skryptowy** — kod sterujący, który zapewnia deterministyczne zachowanie pozostałych agentów.
+
+Najważniejsze objaśnienia dotyczące agentów i przebiegu orkiestracji znajdują się w katalogu
+[docs/](./docs/). Warto zacząć od [docs/README.md](./docs/README.md), który wyjaśnia zawartość
+poszczególnych podkatalogów i artefaktów.
+
+Sama aplikacja w [src/](./src/) jest działającą aplikacją Todo, którą można uruchomić lokalnie
+i obsługiwać w przeglądarce. Testy automatyczne oraz wszystko, co jest potrzebne do ich
+uruchomienia, znajdują się w [e2e/](./e2e/).
+
+Agenci potrafią na podstawie promptu tworzyć nowe funkcjonalności, następnie je testować
+i przygotowywać dokumentację. To projekt edukacyjny zbudowany metodą *vibe coding*, z ręczną
+weryfikacją rezultatów i świadomym traktowaniem go jako eksperymentu, a nie gotowego produktu.
+
 ## Szybki start
 
 ```bash

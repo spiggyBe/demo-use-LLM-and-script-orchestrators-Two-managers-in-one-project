@@ -31,11 +31,13 @@ pojedynczy etap.
 4. Czy plan automatyzacji (`docs/automation/automation-plan-<slug>.md`) uzasadnia przypadki
    NIE zautomatyzowane, czy są to rzeczywiście uzasadnione wyjątki?
 5. Czy dokumentacja jest spójna nazewniczo (ten sam `<slug>` wszędzie, brak sierocych plików)?
+6. Czy `npm run docs:validate -- --slug <slug>` przechodzi i wszystkie statusy artefaktów są
+  zgodne z faktycznym stanem procesu?
 
 ## Sposób pracy
 
 1. Przeczytaj wszystkie artefakty `docs/**/*<slug>*` oraz zmieniony kod.
-2. Uruchom `npm run lint` i `npx playwright test`, zanotuj wyniki.
+2. Uruchom `npm run docs:validate -- --slug <slug>`, `npm run lint` i `npx playwright test`, zanotuj wyniki.
 3. Sklasyfikuj wady jak w recenzji implementacji: `BLOKUJĄCA` / `DO ROZWAŻENIA`.
 4. Zapisz w `docs/reviews/review-final-<slug>.md`.
 

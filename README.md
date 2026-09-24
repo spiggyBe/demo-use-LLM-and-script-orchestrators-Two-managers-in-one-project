@@ -46,13 +46,20 @@ npm run test:e2e:ui   # Playwright w trybie UI
 npm run test:e2e:report
 ```
 
+Dokumentację funkcjonalności można utworzyć i walidować deterministycznie:
+
+```bash
+npm run docs:init -- --slug moja-funkcja --title "Moja funkcja" --requirement "Opis wymagania"
+npm run docs:validate
+```
+
 ## Orkiestracja agentów AI
 
 1. Otwórz czat agenta w VS Code, wybierz **Orchestrator**.
 2. Opisz funkcjonalność do dodania, np. *"Dodaj przypomnienia dla zadań"*.
-3. Orkiestrator poprowadzi zadanie przez 10 etapów (plan → ryzyko → implementacja → recenzja →
+3. Orkiestrator poprowadzi zadanie przez 11 etapów (plan → ryzyko → implementacja → recenzja →
    strategia testów → plan testów → testy manualne → automatyzacja → finalny code review →
-   retrospektywa), zapisując artefakty w `docs/**`.
+   dokumentacja implementacji → retrospektywa), zapisując artefakty w `docs/**`.
 
 Szczegóły: [.github/agents/README.md](./.github/agents/README.md) i
 [docs/orchestration/ORCHESTRATION.md](./docs/orchestration/ORCHESTRATION.md).

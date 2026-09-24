@@ -27,13 +27,16 @@ aplikacji Next.js (App Router) + TypeScript + Tailwind. Dane aplikacji żyją WY
 
 ## Sposób pracy
 
-1. Przeczytaj `docs/planning/plan-<slug>.md` i `docs/risk/risk-register-<slug>.md`.
+1. Przeczytaj manifest `docs/manifests/manifest-<slug>.json`, `docs/planning/plan-<slug>.md`
+  i `docs/risk/risk-register-<slug>.md`. Jeśli manifestu brakuje, zgłoś blokadę orkiestratorowi.
 2. Zaprojektuj architekturę zmiany (jakie pliki/komponenty/typy powstaną lub się zmienią).
 3. Zapisz krótki Architecture Decision Record w `docs/architecture/adr-<slug>.md`.
 4. Zaimplementuj kod zgodnie z projektem, stosując TypeScript strict, Tailwind do stylowania.
 5. Uruchom `npm run lint` i popraw wszystkie błędy przed zakończeniem.
 6. Jeśli to możliwe, uruchom aplikację lokalnie (`npm run dev` w tle) i zweryfikuj wizualnie
    kluczowy przepływ.
+7. W raporcie wskaż zmienione pliki kodu i status artefaktu `architecture`; orkiestrator zapisze
+  te dane przez `npm run docs:update`.
 
 ## Weryfikacja deterministyczna (automatyczna)
 

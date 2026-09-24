@@ -32,9 +32,17 @@ export default function Home() {
             Lista zadań
           </h1>
           <p className="text-sm text-zinc-500">
-            Dane przechowywane wyłącznie lokalnie w przeglądarce (localStorage).
+            Dane przechowywane wyłącznie lokalnie w przeglądarce (localStorage)
           </p>
           <SeedDataButton onSeed={seedFromFakeApi} loading={seeding} error={seedError} />
+          <a
+            href="https://github.com/spiggyBe/demo-use-LLM-and-script-orchestrators-Two-managers-in-one-project/blob/master/README.md"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex w-fit animate-pulse items-center rounded-md bg-green-400 px-4 py-2 text-sm font-semibold text-amber-950 shadow-sm transition hover:bg-amber-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500"
+          >
+            Sprawdź cele i zamierzenia tego projektu klikając w ten link
+          </a>
         </header>
 
         <TodoForm onAdd={addTodo} />

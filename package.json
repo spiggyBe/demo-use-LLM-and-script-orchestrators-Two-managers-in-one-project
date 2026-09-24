@@ -10,7 +10,10 @@
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:report": "playwright show-report",
-    "verify": "node scripts/verify.mjs"
+    "verify": "node scripts/verify.mjs",
+    "docs:init": "node scripts/docs.mjs init",
+    "docs:update": "node scripts/docs.mjs update",
+    "docs:validate": "node scripts/docs.mjs validate"
   },
   "dependencies": {
     "next": "16.3.6",

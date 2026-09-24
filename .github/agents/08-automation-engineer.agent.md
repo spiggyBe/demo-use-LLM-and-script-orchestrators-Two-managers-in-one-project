@@ -26,13 +26,16 @@ automatyczne.
 
 ## Sposób pracy
 
-1. Przeczytaj `docs/manual-tests/manual-cases-<slug>.md` i `docs/test-plans/test-plan-<slug>.md`.
+1. Przeczytaj `docs/manifests/manifest-<slug>.json`, `docs/manual-tests/manual-cases-<slug>.md`
+  i `docs/test-plans/test-plan-<slug>.md`.
 2. Wybierz przypadki do automatyzacji (priorytet Wysoki + Średni w pierwszej kolejności).
 3. Zapisz krótki plan automatyzacji w `docs/automation/automation-plan-<slug>.md`
    (mapowanie TC-ID → nazwa testu Playwright).
 4. Zaimplementuj testy w `e2e/<slug>.spec.ts`.
 5. Uruchom `npx playwright test` i upewnij się, że wszystkie nowe testy przechodzą; napraw
    niestabilne (flaky) testy zanim zakończysz pracę.
+6. Zwróć listę zmienionych plików (`e2e/**` i dokumentacja), aby orkiestrator zaktualizował
+  artefakt `automation` w manifeście.
 
 ## Weryfikacja deterministyczna (automatyczna)
 

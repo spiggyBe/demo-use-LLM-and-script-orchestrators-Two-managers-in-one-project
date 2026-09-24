@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "slug": "edycja-zadania",
+  "title": "Edycja zadania",
+  "requirement": "Istniejąca funkcjonalność referencyjna",
+  "source": "hybrid",
+  "createdAt": "2026-09-24T07:56:47.379Z",
+  "updatedAt": "2026-09-24T08:00:57.188Z",
+  "implementationFiles": [
+    "docs",
+    "e2e",
+    "src"
+  ],
+  "artifacts": [
+    {
+      "key": "planning",
+      "label": "Plan projektu",
+      "path": "docs/planning/plan-edycja-zadania.md",
+      "status": "complete"
+    },
+    {
+      "key": "risk",
+      "label": "Rejestr ryzyk",
+      "path": "docs/risk/risk-register-edycja-zadania.md",
+      "status": "complete"
+    },
+    {
+      "key": "architecture",
+      "label": "Architecture Decision Record",
+      "path": "docs/architecture/adr-edycja-zadania.md",
+      "status": "complete"
+    },
+    {
+      "key": "implementation-review",
+      "label": "Recenzja implementacji",
+      "path": "docs/reviews/review-implementation-edycja-zadania.md",
+      "status": "complete"
+    },
+    {
+      "key": "test-strategy",
+      "label": "Strategia testowania",
+      "path": "docs/test-strategy/test-strategy.md",
+      "status": "complete"
+    },
+    {
+      "key": "test-plan",
+      "label": "Plan testów",
+      "path": "docs/test-plans/test-plan-edycja-zadania.md",
+      "status": "complete"
+    },
+    {
+      "key": "manual-tests",
+      "label": "Testy manualne",
+      "path": "docs/manual-tests/manual-cases-edycja-zadania.md",
+      "status": "complete"
+    },
+    {
+      "key": "automation",
+      "label": "Plan automatyzacji",
+      "path": "docs/automation/automation-plan-edycja-zadania.md",
+      "status": "complete"
+    },
+    {
+      "key": "final-review",
+      "label": "Finalny code review",
+      "path": "docs/reviews/review-final-edycja-zadania.md",
+      "status": "complete"
+    },
+    {
+      "key": "documentation",
+      "label": "Dokumentacja implementacji",
+      "path": "docs/reports/implementation-edycja-zadania.md",
+      "status": "complete"
+    },
+    {
+      "key": "retrospective",
+      "label": "Retrospektywa",
+      "path": "docs/reports/retrospective-edycja-zadania.md",
+      "status": "complete"
+    }
+  ],
+  "history": [
+    {
+      "date": "2026-09-24T08:00:57.188Z",
+      "artifact": "documentation",
+      "status": "complete",
+      "summary": "Zebrano stan implementacji, artefaktów i dowodów testowych",
+      "files": [
+        "src",
+        "e2e",
+        "docs"
+      ]
+    }
+  ]
+}

@@ -17,6 +17,7 @@ Pełny opis architektury orkiestracji, diagram przepływu i zasady współpracy 
 | `07-manual-test-designer.agent.md` | Przypadki testów manualnych |
 | `08-automation-engineer.agent.md` | Automatyzacja Playwright |
 | `09-qa-production-lead.agent.md` | Finalny code review całości |
+| `11-documentation-curator.agent.md` | Zbiorcza dokumentacja implementacji |
 | `10-retrospective-reporter.agent.md` | Raport końcowy + ulepszenia promptów |
 
 Aby uruchomić cały proces: w czacie agenta wybierz **Orchestrator** i opisz funkcjonalność,

@@ -25,11 +25,12 @@ projektu (nie pojedynczej funkcjonalności) — to dokument, który rzadko się 
 
 ## Sposób pracy
 
-1. Przejrzyj strukturę projektu (`package.json`, `playwright.config.ts`, `src/**`) aby dokument
+1. Przeczytaj `docs/manifests/manifest-<slug>.json` i ustal, czy aktualizujesz istniejącą strategię.
+2. Przejrzyj strukturę projektu (`package.json`, `playwright.config.ts`, `src/**`) aby dokument
    odzwierciedlał rzeczywiste narzędzia.
-2. Zdefiniuj piramidę testów odpowiednią dla tej aplikacji (statyczna analiza / lint, testy
+3. Zdefiniuj piramidę testów odpowiednią dla tej aplikacji (statyczna analiza / lint, testy
    komponentów, testy E2E Playwright — brak backendu, więc brak testów kontraktowych/API).
-3. Zapisz/zaktualizuj `docs/test-strategy/test-strategy.md`.
+4. Zapisz/zaktualizuj `docs/test-strategy/test-strategy.md`; nie twórz kopii i dopisz wpis do historii.
 
 ## Szablon
 

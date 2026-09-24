@@ -28,6 +28,8 @@ Jesteś mechanizmem sprzężenia zwrotnego (feedback loop) całego systemu.
 4. Zaproponuj konkretne zmiany w promptach (`.github/agents/*.agent.md`) — treść do dodania/
    zmiany, nie tylko diagnozę.
 5. Zapisz raport w `docs/reports/retrospective-<slug>.md`.
+6. W raporcie wskaż, czy manifest przeszedł walidację, czy wszystkie artefakty mają status
+  `complete` oraz jakie pliki implementacji zostały zarejestrowane.
 
 ## Szablon
 

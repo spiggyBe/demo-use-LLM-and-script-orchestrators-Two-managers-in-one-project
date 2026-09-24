@@ -15,8 +15,8 @@ const isHookMode = process.argv.includes("--hook");
 const npmCmd = process.platform === "win32" ? "npm.cmd" : "npm";
 const npxCmd = process.platform === "win32" ? "npx.cmd" : "npx";
 
-function run(cmd, args) {
-  const result = spawnSync(cmd, args, { encoding: "utf8", shell: true });
+function run(cmd, args, options = {}) {
+  const result = spawnSync(cmd, args, { encoding: "utf8", shell: options.shell ?? true });
   return {
     ok: result.status === 0,
     output: `${result.stdout ?? ""}${result.stderr ?? ""}`.trim(),
@@ -25,10 +25,12 @@ function run(cmd, args) {
 
 const lint = run(npmCmd, ["run", "lint", "--silent"]);
 const tests = run(npxCmd, ["playwright", "test"]);
+const docs = run(process.execPath, ["scripts/docs.mjs", "validate"], { shell: false });
 
-const passed = lint.ok && tests.ok;
+const passed = docs.ok && lint.ok && tests.ok;
 
 const summaryLines = [
+  `docs: ${docs.ok ? "PASS" : "FAIL"}`,
   `lint: ${lint.ok ? "PASS" : "FAIL"}`,
   `playwright: ${tests.ok ? "PASS" : "FAIL"}`,
 ];
@@ -42,7 +44,7 @@ if (isHookMode) {
     JSON.stringify({
       hookSpecificOutput: {
         hookEventName: "SubagentStop",
-        systemMessage,
+        systemMessage: `${systemMessage}${!docs.ok ? `\n\n${docs.output}` : ""}`,
       },
     }),
   );
@@ -50,6 +52,7 @@ if (isHookMode) {
 } else {
   console.log(summaryLines.join("\n"));
   if (!passed) {
+    console.log("\n--- docs output ---\n" + docs.output);
     console.log("\n--- lint output ---\n" + lint.output);
     console.log("\n--- playwright output ---\n" + tests.output);
   }

@@ -16,17 +16,17 @@ const root = process.cwd();
 const manifestDir = join(root, "docs", "manifests");
 const manifestVersion = 1;
 const artifactDefinitions = [
-  ["planning", "docs/planning/plan-{slug}.md", "Plan projektu"],
-  ["risk", "docs/risk/risk-register-{slug}.md", "Rejestr ryzyk"],
-  ["architecture", "docs/architecture/adr-{slug}.md", "Architecture Decision Record"],
-  ["implementation-review", "docs/reviews/review-implementation-{slug}.md", "Recenzja implementacji"],
-  ["test-strategy", "docs/test-strategy/test-strategy.md", "Strategia testowania"],
-  ["test-plan", "docs/test-plans/test-plan-{slug}.md", "Plan testów"],
-  ["manual-tests", "docs/manual-tests/manual-cases-{slug}.md", "Testy manualne"],
-  ["automation", "docs/automation/automation-plan-{slug}.md", "Plan automatyzacji"],
-  ["final-review", "docs/reviews/review-final-{slug}.md", "Finalny code review"],
-  ["documentation", "docs/reports/implementation-{slug}.md", "Dokumentacja implementacji"],
-  ["retrospective", "docs/reports/retrospective-{slug}.md", "Retrospektywa"],
+  ["planning", "docs/planning/plan-{slug}.md", "Plan projektu", "Project plan"],
+  ["risk", "docs/risk/risk-register-{slug}.md", "Rejestr ryzyk", "Risk register"],
+  ["architecture", "docs/architecture/adr-{slug}.md", "Architecture Decision Record", "Architecture Decision Record"],
+  ["implementation-review", "docs/reviews/review-implementation-{slug}.md", "Recenzja implementacji", "Implementation review"],
+  ["test-strategy", "docs/test-strategy/test-strategy.md", "Strategia testowania", "Test strategy"],
+  ["test-plan", "docs/test-plans/test-plan-{slug}.md", "Plan testów", "Test plan"],
+  ["manual-tests", "docs/manual-tests/manual-cases-{slug}.md", "Testy manualne", "Manual test cases"],
+  ["automation", "docs/automation/automation-plan-{slug}.md", "Plan automatyzacji", "Automation plan"],
+  ["final-review", "docs/reviews/review-final-{slug}.md", "Finalny code review", "Final code review"],
+  ["documentation", "docs/reports/implementation-{slug}.md", "Dokumentacja implementacji", "Implementation documentation"],
+  ["retrospective", "docs/reports/retrospective-{slug}.md", "Retrospektywa", "Retrospective"],
 ];
 const validStatuses = new Set(["pending", "in-progress", "complete", "blocked"]);
 
@@ -62,6 +62,10 @@ function artifactPath(template, slug) {
   return template.replace("{slug}", slug);
 }
 
+function englishArtifactPath(path) {
+  return path.replace(/\.md$/, ".en.md");
+}
+
 function createArtifactContent(slug, title, requirement, key, label) {
   return `# ${label}: ${title}\n\n<!-- docs-manifest: slug=${slug} artifact=${key} status=pending -->\n\n## Cel\n\n${requirement || "Do uzupełnienia przez właściwego agenta."}\n\n## Ustalenia\n\nDo uzupełnienia.\n\n## Aktualizacje automatyczne\n\n| Data | Status | Podsumowanie | Zmienione pliki |\n|---|---|---|---|\n`;
 }
@@ -77,13 +81,16 @@ function buildManifest(slug, values, existing) {
     createdAt: existing?.createdAt || now,
     updatedAt: now,
     implementationFiles: existing?.implementationFiles || [],
-    artifacts: artifactDefinitions.map(([key, template, label]) => {
+    artifacts: artifactDefinitions.map(([key, template, label, labelEn]) => {
       const previous = existing?.artifacts?.find((artifact) => artifact.key === key);
+      const path = artifactPath(template, slug);
       return {
         key,
         label,
-        path: artifactPath(template, slug),
-        status: previous?.status || (existsSync(join(root, artifactPath(template, slug))) ? "complete" : "pending"),
+        labelEn,
+        path,
+        pathEn: previous?.pathEn || englishArtifactPath(path),
+        status: previous?.status || (existsSync(join(root, path)) ? "complete" : "pending"),
       };
     }),
     history: existing?.history || [],
@@ -104,10 +111,14 @@ function init(values) {
   const manifest = buildManifest(slug, values, existing);
   for (const artifact of manifest.artifacts) {
     const pathToArtifact = join(root, artifact.path);
+    const pathToEnglishArtifact = join(root, artifact.pathEn);
     mkdirSync(join(pathToArtifact, ".."), { recursive: true });
     if (!existsSync(pathToArtifact)) {
-      const definition = artifactDefinitions.find(([key]) => key === artifact.key);
-      writeFileSync(pathToArtifact, createArtifactContent(slug, manifest.title, manifest.requirement, artifact.key, definition[2]));
+      writeFileSync(pathToArtifact, createArtifactContent(slug, manifest.title, manifest.requirement, artifact.key, artifact.label));
+    }
+    mkdirSync(join(pathToEnglishArtifact, ".."), { recursive: true });
+    if (!existsSync(pathToEnglishArtifact)) {
+      writeFileSync(pathToEnglishArtifact, createEnglishArtifactContent(slug, manifest.title, manifest.requirement, artifact.key, artifact.labelEn));
     }
   }
   writeFileSync(path, `${JSON.stringify(manifest, null, 2)}\n`);
@@ -129,7 +140,9 @@ function update(values) {
   manifest.implementationFiles = [...new Set([...manifest.implementationFiles, ...files])].sort();
   manifest.history.push({ date: now, artifact: artifact.key, status: artifact.status, summary, files });
   const targetPath = join(root, artifact.path);
+  const targetEnglishPath = join(root, artifact.pathEn);
   if (!existsSync(targetPath)) throw new Error(`brak pliku artefaktu ${artifact.path}; uruchom init ponownie`);
+  if (!existsSync(targetEnglishPath)) throw new Error(`missing English artifact ${artifact.pathEn}; run init again`);
   let content = readFileSync(targetPath, "utf8");
   const marker = new RegExp(`(<!-- docs-manifest: slug=${slug} artifact=${artifact.key} status=)([^ ]+)( -->)`);
   content = marker.test(content)
@@ -140,6 +153,16 @@ function update(values) {
     ? `${content}${content.endsWith("\n") ? "" : "\n"}${updateRow}`
     : `${content.trimEnd()}\n\n## Aktualizacje automatyczne\n\n| Data | Status | Podsumowanie | Zmienione pliki |\n|---|---|---|---|\n${updateRow}`;
   writeFileSync(targetPath, content);
+  let englishContent = readFileSync(targetEnglishPath, "utf8");
+  const englishMarker = new RegExp(`(<!-- docs-manifest: slug=${slug} artifact=${artifact.key} status=)([^ ]+)`);
+  englishContent = englishMarker.test(englishContent)
+    ? englishContent.replace(englishMarker, `$1${artifact.status}`)
+    : `<!-- docs-manifest: slug=${slug} artifact=${artifact.key} status=${artifact.status} locale=en -->\n\n${englishContent}`;
+  const englishUpdateRow = `| ${now} | ${artifact.status} | ${summary.replaceAll("|", "\\|")} | ${files.join(", ") || "-"} |\n`;
+  englishContent = englishContent.includes("## Automatic updates")
+    ? `${englishContent}${englishContent.endsWith("\n") ? "" : "\n"}${englishUpdateRow}`
+    : `${englishContent.trimEnd()}\n\n## Automatic updates\n\n| Date | Status | Summary | Changed files |\n|---|---|---|---|\n${englishUpdateRow}`;
+  writeFileSync(targetEnglishPath, englishContent);
   writeFileSync(path, `${JSON.stringify(manifest, null, 2)}\n`);
   console.log(`docs: ${artifact.key} -> ${artifact.status}`);
 }
@@ -167,6 +190,9 @@ function validate(values) {
       for (const artifact of artifacts) {
         if (!validStatuses.has(artifact.status)) errors.push(`${slug}: ${artifact.key} ma nieprawidłowy status`);
         if (!existsSync(join(root, artifact.path))) errors.push(`${slug}: brak ${artifact.path}`);
+        if (!artifact.pathEn || !existsSync(join(root, artifact.pathEn))) {
+          errors.push(`${slug}: missing English artifact ${artifact.pathEn || `${artifact.path}.en.md`}`);
+        }
       }
     } catch (error) {
       errors.push(`${slug}: ${error.message}`);
@@ -189,4 +215,8 @@ try {
   else throw new Error("użycie: init | update | validate");
 } catch (error) {
   fail(error.message);
+}
+
+function createEnglishArtifactContent(slug, title, requirement, key, label) {
+  return `# ${label}: ${title}\n\n<!-- docs-manifest: slug=${slug} artifact=${key} status=pending locale=en -->\n\n## Goal\n\n${requirement || "To be completed by the responsible agent."}\n\n## Decisions\n\nTo be completed.\n\n## Automatic updates\n\n| Date | Status | Summary | Changed files |\n|---|---|---|---|\n`;
 }

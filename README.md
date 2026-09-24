@@ -1,5 +1,9 @@
 # Test Orchestrator — nauka orkiestracji agentów AI
 
+> **English documentation:** See [README.en.md](./README.en.md) for the English version of
+> this README. Polish originals remain the source documents; parallel English files use the
+> `.en.md` suffix.
+
 Projekt ćwiczeniowy: **Lista zadań (Todo List)** w Next.js + TypeScript + Tailwind, z danymi
 przechowywanymi wyłącznie w `localStorage` przeglądarki (bez zewnętrznej bazy danych). Testy E2E
 napisane są w Playwright.
@@ -63,6 +67,12 @@ npm run docs:validate
 
 Szczegóły: [.github/agents/README.md](./.github/agents/README.md) i
 [docs/orchestration/ORCHESTRATION.md](./docs/orchestration/ORCHESTRATION.md).
+
+## Języki
+
+Aplikacja startuje po polsku. W prawym górnym rogu przełącz język na angielski; wybór jest
+zapisywany lokalnie w przeglądarce. Polska dokumentacja ma równoległe wersje angielskie z
+przyrostkiem `.en.md`, zaczynając od [README.en.md](./README.en.md).
 
 ## Stos technologiczny
 

@@ -1,3 +1,5 @@
+import { useI18n } from "@/lib/i18n";
+
 export function TodoStats({
   total,
   active,
@@ -7,11 +9,12 @@ export function TodoStats({
   active: number;
   completed: number;
 }) {
+  const { t } = useI18n();
   return (
     <div data-testid="todo-stats" className="flex gap-4 text-xs text-neutral-500">
-      <span data-testid="todo-stats-total">Wszystkie: {total}</span>
-      <span data-testid="todo-stats-active">Aktywne: {active}</span>
-      <span data-testid="todo-stats-completed">Ukończone: {completed}</span>
+      <span data-testid="todo-stats-total">{t.stats.all}: {total}</span>
+      <span data-testid="todo-stats-active">{t.stats.active}: {active}</span>
+      <span data-testid="todo-stats-completed">{t.stats.completed}: {completed}</span>
     </div>
   );
 }

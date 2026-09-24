@@ -1,3 +1,5 @@
+import { useI18n } from "@/lib/i18n";
+
 export function SeedDataButton({
   onSeed,
   loading,
@@ -7,6 +9,7 @@ export function SeedDataButton({
   loading: boolean;
   error: string | null;
 }) {
+  const { t } = useI18n();
   return (
     <div className="flex flex-col gap-1">
       <button
@@ -15,11 +18,11 @@ export function SeedDataButton({
         disabled={loading}
         className="self-start rounded-md border border-dashed border-neutral-300 px-3 py-1.5 text-xs font-medium text-neutral-600 transition hover:bg-neutral-50 disabled:cursor-not-allowed disabled:opacity-50 dark:border-neutral-700 dark:text-neutral-300"
       >
-        {loading ? "Wczytywanie…" : "Załaduj przykładowe dane (fake API)"}
+        {loading ? t.seedLoading : t.seedButton}
       </button>
       {loading && (
         <p data-testid="todo-seed-loading" className="text-xs text-neutral-400">
-          Wczytywanie z fake API…
+          {t.seedLoadingNote}
         </p>
       )}
       {error && (

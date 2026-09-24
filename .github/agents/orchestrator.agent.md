@@ -32,6 +32,8 @@ kolejności**, przekazując im kontekst, i pilnować spójności całego procesu
 - Po każdym etapie uruchom `npm run docs:update -- --slug <slug> --artifact <klucz> --status complete
   --summary "..." --files plik1,plik2` albo oznacz etap jako `blocked`. Nie zgłaszaj ukończenia
   etapu bez aktualizacji jego manifestu.
+- Każdy artefakt ma dwie wersje: polską `path` i angielską `pathEn` z przyrostkiem `.en.md`.
+  Przekaż agentom obowiązek aktualizacji obu wersji, a brak którejkolwiek traktuj jako blokadę.
 - Po każdym etapie recenzji (Implementation Reviewer, QA Production Lead) przeczytaj wynik:
   jeśli są błędy krytyczne ("BLOKUJĄCE"), wróć do odpowiedniego wcześniejszego agenta zamiast
   iść dalej.

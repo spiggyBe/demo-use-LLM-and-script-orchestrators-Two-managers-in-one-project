@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { Category, NewTodoInput, Priority, Todo } from "@/types/todo";
+import { useI18n } from "@/lib/i18n";
 
 const PRIORITY_STYLES: Record<Todo["priority"], string> = {
   low: "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300",
@@ -19,6 +20,7 @@ function EditForm({
   onSave: (changes: NewTodoInput) => void;
   onCancel: () => void;
 }) {
+  const { t } = useI18n();
   const [title, setTitle] = useState(todo.title);
   const [description, setDescription] = useState(todo.description ?? "");
   const [priority, setPriority] = useState<Priority>(todo.priority);
@@ -29,7 +31,7 @@ function EditForm({
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!title.trim()) {
-      setError("Tytuł zadania jest wymagany.");
+      setError(t.requiredTitle);
       return;
     }
     onSave({ title, description, priority, category, dueDate });
@@ -47,7 +49,7 @@ function EditForm({
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           className="rounded-md border border-black/15 px-2 py-1.5 text-sm outline-none focus:border-blue-500 dark:border-white/15 dark:bg-neutral-800"
-          aria-label="Edytuj tytuł zadania"
+          aria-label={t.editTitleLabel}
         />
         {error && (
           <p data-testid="todo-edit-form-error" className="text-xs text-red-600">
@@ -62,12 +64,12 @@ function EditForm({
         onChange={(e) => setDescription(e.target.value)}
         rows={2}
         className="rounded-md border border-black/15 px-2 py-1.5 text-sm outline-none focus:border-blue-500 dark:border-white/15 dark:bg-neutral-800"
-        aria-label="Edytuj opis zadania"
+        aria-label={t.editDescriptionLabel}
       />
 
       <div className="flex flex-wrap gap-2">
         <label className="flex flex-col gap-1 text-xs">
-          Priorytet
+          {t.priorityLabel}
           <select
             data-testid="todo-edit-priority-select"
             value={priority}
@@ -76,14 +78,14 @@ function EditForm({
           >
             {PRIORITIES.map((p) => (
               <option key={p} value={p}>
-                {p}
+                {t.priority[p]}
               </option>
             ))}
           </select>
         </label>
 
         <label className="flex flex-col gap-1 text-xs">
-          Kategoria
+          {t.categoryLabel}
           <select
             data-testid="todo-edit-category-select"
             value={category}
@@ -92,14 +94,14 @@ function EditForm({
           >
             {CATEGORIES.map((c) => (
               <option key={c} value={c}>
-                {c}
+                {t.category[c]}
               </option>
             ))}
           </select>
         </label>
 
         <label className="flex flex-col gap-1 text-xs">
-          Termin
+          {t.dueDateLabel}
           <input
             data-testid="todo-edit-due-date-input"
             type="date"
@@ -116,7 +118,7 @@ function EditForm({
           type="submit"
           className="rounded-md bg-blue-600 px-3 py-1.5 text-xs font-medium text-white transition hover:bg-blue-700"
         >
-          Zapisz
+          {t.save}
         </button>
         <button
           data-testid="todo-edit-cancel-button"
@@ -124,7 +126,7 @@ function EditForm({
           onClick={onCancel}
           className="rounded-md px-3 py-1.5 text-xs font-medium text-neutral-500 transition hover:bg-neutral-100 dark:hover:bg-neutral-800"
         >
-          Anuluj
+          {t.cancel}
         </button>
       </div>
     </form>
@@ -148,6 +150,7 @@ export function TodoItem({
   onCancelEdit: () => void;
   onUpdate: (id: string, changes: NewTodoInput) => void;
 }) {
+  const { t } = useI18n();
   if (isEditing) {
     return (
       <li
@@ -180,7 +183,7 @@ export function TodoItem({
         checked={todo.completed}
         onChange={() => onToggle(todo.id)}
         className="mt-1 h-4 w-4"
-        aria-label={`Oznacz "${todo.title}" jako ukończone`}
+        aria-label={todo.completed ? t.markIncomplete(todo.title) : t.markComplete(todo.title)}
       />
 
       <div className="flex-1">
@@ -198,13 +201,13 @@ export function TodoItem({
             data-testid="todo-priority-badge"
             className={`rounded px-1.5 py-0.5 font-medium ${PRIORITY_STYLES[todo.priority]}`}
           >
-            {todo.priority}
+            {t.priority[todo.priority]}
           </span>
           <span className="rounded bg-neutral-100 px-1.5 py-0.5 text-neutral-600 dark:bg-neutral-800 dark:text-neutral-300">
-            {todo.category}
+            {t.category[todo.category]}
           </span>
           {todo.dueDate && (
-            <span className="text-neutral-400">termin: {todo.dueDate}</span>
+            <span className="text-neutral-400">{t.dueDateLabel.toLowerCase()}: {todo.dueDate}</span>
           )}
         </div>
       </div>
@@ -212,19 +215,19 @@ export function TodoItem({
       <button
         data-testid="todo-edit-button"
         onClick={() => onStartEdit(todo.id)}
-        aria-label={`Edytuj "${todo.title}"`}
+        aria-label={`${t.edit} "${todo.title}"`}
         className="rounded-md px-2 py-1 text-xs text-neutral-400 transition hover:bg-blue-50 hover:text-blue-600 dark:hover:bg-blue-900/30"
       >
-        Edytuj
+        {t.edit}
       </button>
 
       <button
         data-testid="todo-delete-button"
         onClick={() => onDelete(todo.id)}
-        aria-label={`Usuń "${todo.title}"`}
+        aria-label={`${t.remove} "${todo.title}"`}
         className="rounded-md px-2 py-1 text-xs text-neutral-400 transition hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-900/30"
       >
-        Usuń
+        {t.remove}
       </button>
     </li>
   );

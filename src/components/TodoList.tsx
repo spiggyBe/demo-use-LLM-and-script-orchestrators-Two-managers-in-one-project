@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { NewTodoInput, Todo } from "@/types/todo";
 import { TodoItem } from "./TodoItem";
+import { useI18n } from "@/lib/i18n";
 
 export function TodoList({
   todos,
@@ -13,12 +14,13 @@ export function TodoList({
   onDelete: (id: string) => void;
   onUpdate: (id: string, changes: NewTodoInput) => void;
 }) {
+  const { t } = useI18n();
   const [editingId, setEditingId] = useState<string | null>(null);
 
   if (todos.length === 0) {
     return (
       <p data-testid="todo-empty-state" className="text-sm text-neutral-400">
-        Brak zadań do wyświetlenia.
+        {t.empty}
       </p>
     );
   }

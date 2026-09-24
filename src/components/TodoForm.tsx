@@ -2,11 +2,13 @@
 
 import { useState } from "react";
 import type { Category, NewTodoInput, Priority } from "@/types/todo";
+import { useI18n } from "@/lib/i18n";
 
 const PRIORITIES: Priority[] = ["low", "medium", "high"];
 const CATEGORIES: Category[] = ["praca", "dom", "nauka", "inne"];
 
 export function TodoForm({ onAdd }: { onAdd: (input: NewTodoInput) => void }) {
+  const { t } = useI18n();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState<Priority>("medium");
@@ -17,7 +19,7 @@ export function TodoForm({ onAdd }: { onAdd: (input: NewTodoInput) => void }) {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!title.trim()) {
-      setError("Tytuł zadania jest wymagany.");
+      setError(t.requiredTitle);
       return;
     }
     onAdd({ title, description, priority, category, dueDate });
@@ -40,9 +42,9 @@ export function TodoForm({ onAdd }: { onAdd: (input: NewTodoInput) => void }) {
           data-testid="todo-title-input"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          placeholder="Co trzeba zrobić?"
+          placeholder={t.addTitlePlaceholder}
           className="rounded-md border border-black/15 px-3 py-2 text-sm outline-none focus:border-blue-500 dark:border-white/15 dark:bg-neutral-800"
-          aria-label="Tytuł zadania"
+          aria-label={t.titleLabel}
         />
         {error && (
           <p data-testid="todo-form-error" className="text-xs text-red-600">
@@ -55,15 +57,15 @@ export function TodoForm({ onAdd }: { onAdd: (input: NewTodoInput) => void }) {
         data-testid="todo-description-input"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
-        placeholder="Opis (opcjonalnie)"
+        placeholder={t.descriptionOptional}
         rows={2}
         className="rounded-md border border-black/15 px-3 py-2 text-sm outline-none focus:border-blue-500 dark:border-white/15 dark:bg-neutral-800"
-        aria-label="Opis zadania"
+        aria-label={t.descriptionLabel}
       />
 
       <div className="flex flex-wrap gap-3">
         <label className="flex flex-col gap-1 text-xs">
-          Priorytet
+          {t.priorityLabel}
           <select
             data-testid="todo-priority-select"
             value={priority}
@@ -72,14 +74,14 @@ export function TodoForm({ onAdd }: { onAdd: (input: NewTodoInput) => void }) {
           >
             {PRIORITIES.map((p) => (
               <option key={p} value={p}>
-                {p}
+                {t.priority[p]}
               </option>
             ))}
           </select>
         </label>
 
         <label className="flex flex-col gap-1 text-xs">
-          Kategoria
+          {t.categoryLabel}
           <select
             data-testid="todo-category-select"
             value={category}
@@ -88,14 +90,14 @@ export function TodoForm({ onAdd }: { onAdd: (input: NewTodoInput) => void }) {
           >
             {CATEGORIES.map((c) => (
               <option key={c} value={c}>
-                {c}
+                {t.category[c]}
               </option>
             ))}
           </select>
         </label>
 
         <label className="flex flex-col gap-1 text-xs">
-          Termin
+          {t.dueDateLabel}
           <input
             data-testid="todo-due-date-input"
             type="date"
@@ -111,7 +113,7 @@ export function TodoForm({ onAdd }: { onAdd: (input: NewTodoInput) => void }) {
         type="submit"
         className="self-start rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-blue-700"
       >
-        Dodaj zadanie
+        {t.addTask}
       </button>
     </form>
   );

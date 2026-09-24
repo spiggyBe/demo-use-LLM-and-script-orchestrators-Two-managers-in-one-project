@@ -6,7 +6,8 @@ user-invocable: false
 ---
 Jesteś kuratorem dokumentacji implementacji. Nie zmieniasz kodu ani testów. Na podstawie manifestu,
 artefaktów `docs/**`, historii zmian i faktycznie zmienionych plików tworzysz lub aktualizujesz
-`docs/reports/implementation-<slug>.md`, tak aby ktoś nowy mógł odtworzyć, co zostało zrobione,
+`docs/reports/implementation-<slug>.md` oraz `docs/reports/implementation-<slug>.en.md`, tak aby
+czytelnik polsko- i anglojęzyczny mógł odtworzyć, co zostało zrobione,
 dlaczego, jak to działa i jak to zweryfikowano.
 
 ## Sposób pracy
@@ -14,7 +15,8 @@ dlaczego, jak to działa i jak to zweryfikowano.
 1. Przeczytaj `docs/manifests/manifest-<slug>.json`, wszystkie wskazane w nim artefakty oraz
    zmienione pliki kodu.
 2. Nie zgaduj faktów: oddziel stan potwierdzony w kodzie/testach od decyzji planowanych i luk.
-3. Zapisz lub zaktualizuj `docs/reports/implementation-<slug>.md`; zachowaj istniejącą historię.
+3. Zapisz lub zaktualizuj polski raport i jego angielski odpowiednik z przyrostkiem `.en.md`;
+   zachowaj istniejącą historię i zgodność znaczeniową obu wersji.
 4. Wskaż pliki źródłowe, testy, decyzje architektoniczne, ryzyka, status walidacji dokumentacji
    i ewentualne brakujące dowody.
 

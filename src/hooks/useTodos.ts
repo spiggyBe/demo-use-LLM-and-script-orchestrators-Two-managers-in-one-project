@@ -2,11 +2,13 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { readStorage, writeStorage } from "@/lib/storage";
+import { useI18n } from "@/lib/i18n";
 import type { Filter, NewTodoInput, Todo } from "@/types/todo";
 
 const STORAGE_KEY = "test-orchestrator.todos.v1";
 
 export function useTodos() {
+  const { t } = useI18n();
   const [todos, setTodos] = useState<Todo[]>([]);
   const [filter, setFilter] = useState<Filter>("all");
   const [hydrated, setHydrated] = useState(false);
@@ -79,7 +81,7 @@ export function useTodos() {
     try {
       const response = await fetch("/api/seed-todos");
       if (!response.ok) {
-        throw new Error(`Fake API zwróciło błąd: ${response.status}`);
+        throw new Error(t.apiError(response.status));
       }
       const rows = (await response.json()) as NewTodoInput[];
       const now = new Date().toISOString();
@@ -98,10 +100,10 @@ export function useTodos() {
     } catch (err) {
       setSeedState({
         loading: false,
-        error: err instanceof Error ? err.message : "Nieznany błąd wczytywania danych.",
+        error: err instanceof Error ? err.message : t.unknownSeedError,
       });
     }
-  }, []);
+  }, [t]);
 
   const filteredTodos = useMemo(() => {
     switch (filter) {

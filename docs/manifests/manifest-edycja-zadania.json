@@ -5,77 +5,101 @@
   "requirement": "Istniejąca funkcjonalność referencyjna",
   "source": "hybrid",
   "createdAt": "2026-09-24T07:56:47.379Z",
-  "updatedAt": "2026-09-24T08:00:57.188Z",
+  "updatedAt": "2026-09-24T08:27:08.389Z",
   "implementationFiles": [
     "docs",
     "e2e",
-    "src"
+    "src",
+    "src/components/LanguageProvider.tsx",
+    "src/lib/i18n.ts"
   ],
   "artifacts": [
     {
       "key": "planning",
       "label": "Plan projektu",
+      "labelEn": "Project plan",
       "path": "docs/planning/plan-edycja-zadania.md",
+      "pathEn": "docs/planning/plan-edycja-zadania.en.md",
       "status": "complete"
     },
     {
       "key": "risk",
       "label": "Rejestr ryzyk",
+      "labelEn": "Risk register",
       "path": "docs/risk/risk-register-edycja-zadania.md",
+      "pathEn": "docs/risk/risk-register-edycja-zadania.en.md",
       "status": "complete"
     },
     {
       "key": "architecture",
       "label": "Architecture Decision Record",
+      "labelEn": "Architecture Decision Record",
       "path": "docs/architecture/adr-edycja-zadania.md",
+      "pathEn": "docs/architecture/adr-edycja-zadania.en.md",
       "status": "complete"
     },
     {
       "key": "implementation-review",
       "label": "Recenzja implementacji",
+      "labelEn": "Implementation review",
       "path": "docs/reviews/review-implementation-edycja-zadania.md",
+      "pathEn": "docs/reviews/review-implementation-edycja-zadania.en.md",
       "status": "complete"
     },
     {
       "key": "test-strategy",
       "label": "Strategia testowania",
+      "labelEn": "Test strategy",
       "path": "docs/test-strategy/test-strategy.md",
+      "pathEn": "docs/test-strategy/test-strategy.en.md",
       "status": "complete"
     },
     {
       "key": "test-plan",
       "label": "Plan testów",
+      "labelEn": "Test plan",
       "path": "docs/test-plans/test-plan-edycja-zadania.md",
+      "pathEn": "docs/test-plans/test-plan-edycja-zadania.en.md",
       "status": "complete"
     },
     {
       "key": "manual-tests",
       "label": "Testy manualne",
+      "labelEn": "Manual test cases",
       "path": "docs/manual-tests/manual-cases-edycja-zadania.md",
+      "pathEn": "docs/manual-tests/manual-cases-edycja-zadania.en.md",
       "status": "complete"
     },
     {
       "key": "automation",
       "label": "Plan automatyzacji",
+      "labelEn": "Automation plan",
       "path": "docs/automation/automation-plan-edycja-zadania.md",
+      "pathEn": "docs/automation/automation-plan-edycja-zadania.en.md",
       "status": "complete"
     },
     {
       "key": "final-review",
       "label": "Finalny code review",
+      "labelEn": "Final code review",
       "path": "docs/reviews/review-final-edycja-zadania.md",
+      "pathEn": "docs/reviews/review-final-edycja-zadania.en.md",
       "status": "complete"
     },
     {
       "key": "documentation",
       "label": "Dokumentacja implementacji",
+      "labelEn": "Implementation documentation",
       "path": "docs/reports/implementation-edycja-zadania.md",
+      "pathEn": "docs/reports/implementation-edycja-zadania.en.md",
       "status": "complete"
     },
     {
       "key": "retrospective",
       "label": "Retrospektywa",
+      "labelEn": "Retrospective",
       "path": "docs/reports/retrospective-edycja-zadania.md",
+      "pathEn": "docs/reports/retrospective-edycja-zadania.en.md",
       "status": "complete"
     }
   ],
@@ -89,6 +113,16 @@
         "src",
         "e2e",
         "docs"
+      ]
+    },
+    {
+      "date": "2026-09-24T08:27:08.389Z",
+      "artifact": "documentation",
+      "status": "complete",
+      "summary": "Synchronized Polish and English implementation documentation",
+      "files": [
+        "src/lib/i18n.ts",
+        "src/components/LanguageProvider.tsx"
       ]
     }
   ]

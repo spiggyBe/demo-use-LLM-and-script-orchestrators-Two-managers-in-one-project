@@ -1,5 +1,9 @@
 # Artefakty agentów
 
+> **Wersja angielska:** Angielskie odpowiedniki mają przyrostek `.en.md` i znajdują się obok
+> polskich oryginałów. Zobacz [English documentation index](./README.en.md). Oryginały polskie
+> pozostają niezmienione i są dokumentami źródłowymi.
+
 Ten katalog przechowuje artefakty generowane przez pipeline agentów AI opisany w
 [orchestration/ORCHESTRATION.md](./orchestration/ORCHESTRATION.md).
 
@@ -53,3 +57,6 @@ npm run docs:validate
 
 `npm run verify` wykonuje tę walidację przed lintem i testami Playwright. Skrypt sprawdza strukturę
 i kompletność, natomiast zgodność merytoryczną kodu z opisem nadal oceniają agenci recenzujący.
+
+Każdy artefakt dokumentacyjny ma również wersję angielską z przyrostkiem `.en.md`. Obie wersje
+muszą być aktualizowane razem; walidator manifestu sprawdza istnienie obu plików.

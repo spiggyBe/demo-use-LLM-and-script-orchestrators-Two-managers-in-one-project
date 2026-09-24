@@ -1,10 +1,7 @@
 import type { Filter } from "@/types/todo";
+import { useI18n } from "@/lib/i18n";
 
-const FILTERS: { value: Filter; label: string }[] = [
-  { value: "all", label: "Wszystkie" },
-  { value: "active", label: "Aktywne" },
-  { value: "completed", label: "Ukończone" },
-];
+const FILTERS: Filter[] = ["all", "active", "completed"];
 
 export function FilterBar({
   filter,
@@ -17,22 +14,23 @@ export function FilterBar({
   onClearCompleted: () => void;
   hasCompleted: boolean;
 }) {
+  const { t } = useI18n();
   return (
     <div className="flex items-center justify-between">
       <div data-testid="todo-filter-bar" className="flex gap-1">
         {FILTERS.map((f) => (
           <button
-            key={f.value}
-            data-testid={`todo-filter-${f.value}`}
-            onClick={() => onChange(f.value)}
-            aria-pressed={filter === f.value}
+            key={f}
+            data-testid={`todo-filter-${f}`}
+            onClick={() => onChange(f)}
+            aria-pressed={filter === f}
             className={`rounded-md px-3 py-1.5 text-xs font-medium transition ${
-              filter === f.value
+              filter === f
                 ? "bg-blue-600 text-white"
                 : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200 dark:bg-neutral-800 dark:text-neutral-300"
             }`}
           >
-            {f.label}
+            {t.filters[f]}
           </button>
         ))}
       </div>
@@ -42,7 +40,7 @@ export function FilterBar({
         disabled={!hasCompleted}
         className="text-xs text-neutral-400 underline decoration-dotted hover:text-red-600 disabled:cursor-not-allowed disabled:opacity-40"
       >
-        Wyczyść ukończone
+        {t.clearCompleted}
       </button>
     </div>
   );

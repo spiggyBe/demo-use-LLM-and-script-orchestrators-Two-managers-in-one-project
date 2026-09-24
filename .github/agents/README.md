@@ -1,5 +1,10 @@
 # Agenci AI — orkiestracja
 
+> **Wersja angielska:** Każdy plik instrukcji ma angielski odpowiednik z przyrostkiem `.en.md`,
+> umieszczony obok polskiego oryginału. Zobacz [English agent index](./README.en.md). Nazwy
+> agentów i semantyka frontmatter pozostają takie same; angielskie pliki są równoległymi
+> dokumentami dla czytelników anglojęzycznych.
+
 Pełny opis architektury orkiestracji, diagram przepływu i zasady współpracy agentów znajdują się w
 [docs/orchestration/ORCHESTRATION.md](../../docs/orchestration/ORCHESTRATION.md).
 

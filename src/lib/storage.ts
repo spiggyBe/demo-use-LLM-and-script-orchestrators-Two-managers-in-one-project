@@ -1,6 +1,6 @@
 /**
  * Thin, SSR-safe wrapper around window.localStorage.
- * The whole app persists state only in the browser — no external database.
+ * The whole app persists state only in the browser - no external database.
  */
 const isBrowser = () => typeof window !== "undefined";
 
@@ -20,7 +20,7 @@ export function writeStorage<T>(key: string, value: T): void {
   try {
     window.localStorage.setItem(key, JSON.stringify(value));
   } catch {
-    // Storage quota exceeded or unavailable (e.g. private mode) — fail silently.
+    // Storage quota exceeded or unavailable (e.g. private mode) - fail silently.
   }
 }
 

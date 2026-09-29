@@ -1,4 +1,4 @@
-# Test Orchestrator — nauka orkiestracji agentów AI
+# Test Orchestrator - nauka orkiestracji agentów AI
 
 > **English documentation:** See [README.en.md](./README.en.md) for the English version of
 > this README. Polish originals remain the source documents; parallel English files use the
@@ -10,15 +10,15 @@ napisane są w Playwright.
 
 Prawdziwym celem tego repozytorium jest jednak system 11 wyspecjalizowanych agentów AI w
 [.github/agents/](./.github/agents/), które wspólnie planują, analizują ryzyko, implementują,
-testują i recenzują dowolną nową funkcjonalność tej aplikacji — pełny opis architektury
+testują i recenzują dowolną nową funkcjonalność tej aplikacji - pełny opis architektury
 orkiestracji znajduje się w [docs/orchestration/ORCHESTRATION.md](./docs/orchestration/ORCHESTRATION.md).
 
 ## O projekcie
 
 To eksperymentalne, weekendowe demo pokazuje dwa podejścia do orkiestracji agentów:
 
-- **orkiestrator AI** — agent oparty na LLM, który podejmuje decyzje w sposób niedeterministyczny;
-- **orkiestrator skryptowy** — kod sterujący, który zapewnia deterministyczne zachowanie pozostałych agentów.
+- **orkiestrator AI** - agent oparty na LLM, który podejmuje decyzje w sposób niedeterministyczny;
+- **orkiestrator skryptowy** - kod sterujący, który zapewnia deterministyczne zachowanie pozostałych agentów.
 
 Najważniejsze objaśnienia dotyczące agentów i przebiegu orkiestracji znajdują się w katalogu
 [docs/](./docs/). Warto zacząć od [docs/README.md](./docs/README.md), który wyjaśnia zawartość
@@ -79,5 +79,5 @@ przyrostkiem `.en.md`, zaczynając od [README.en.md](./README.en.md).
 - Next.js 16 (App Router), React 19, TypeScript
 - Tailwind CSS v4
 - Playwright (`@playwright/test`, `@axe-core/playwright`)
-- Storage: wyłącznie `window.localStorage` — brak backendu/bazy danych
+- Storage: wyłącznie `window.localStorage` - brak backendu/bazy danych
 

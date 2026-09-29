@@ -4,7 +4,7 @@ import type { TodoFormInput } from "./types";
 
 /**
  * Page Object Model for the Todo List page (`/`).
- * All selectors live here — tests should never reach for `page.locator(...)` directly.
+ * All selectors live here - tests should never reach for `page.locator(...)` directly.
  */
 export class TodoPage {
   readonly titleInput: Locator;

@@ -6,14 +6,14 @@
 _Brak._
 
 ## Uwagi do rozważenia
-- [TodoItem.tsx](../../src/components/TodoItem.tsx) — `EditForm` duplikuje pola formularza z
+- [TodoItem.tsx](../../src/components/TodoItem.tsx) - `EditForm` duplikuje pola formularza z
   [TodoForm.tsx](../../src/components/TodoForm.tsx) (tytuł/opis/priorytet/kategoria/termin).
-  Zgodne ze świadomą decyzją w ADR (R7, dług techniczny nieblokujący) — akceptowalne dla zakresu
+  Zgodne ze świadomą decyzją w ADR (R7, dług techniczny nieblokujący) - akceptowalne dla zakresu
   tego zadania, ale warto wydzielić wspólny komponent pól przy kolejnej zmianie formularzy.
 - Brak obsługi klawisza `Escape` do anulowania edycji (wspomniane w rejestrze ryzyk jako
-  nice-to-have, R4) — nie blokuje, ale mogłoby poprawić UX klawiaturowy.
+  nice-to-have, R4) - nie blokuje, ale mogłoby poprawić UX klawiaturowy.
 - Weryfikacja `npm run lint` / `npx playwright test` nie została uruchomiona w tej iteracji
-  (brak narzędzia terminala w sesji orkiestratora) — zweryfikowano jedynie diagnostyką statyczną
+  (brak narzędzia terminala w sesji orkiestratora) - zweryfikowano jedynie diagnostyką statyczną
   (`get_errors`, 0 błędów w całym workspace). Zalecenie: przed merge uruchomić oba polecenia
   lokalnie lub w CI.
 
@@ -25,7 +25,7 @@ _Brak._
   anulowanie (`todo-edit-cancel-button`) nie wywołuje `onUpdate`.
 - Ryzyko R2 (rejestr ryzyk) zaadresowane poprawnie: `updateTodo` w
   [useTodos.ts](../../src/hooks/useTodos.ts) scala zmiany przez `id` (`prev.map`), jawnie
-  zachowując `id`, `createdAt`, `completed` z istniejącego obiektu — nie nadpisuje całego rekordu.
+  zachowując `id`, `createdAt`, `completed` z istniejącego obiektu - nie nadpisuje całego rekordu.
 - Ryzyko R5 zaadresowane: stan `editingId` trzymany w [TodoList.tsx](../../src/components/TodoList.tsx),
   więc tylko jedno zadanie na raz może być w trybie edycji.
 - Ryzyko R6 zaadresowane: wszystkie nowe elementy interaktywne mają `data-testid`

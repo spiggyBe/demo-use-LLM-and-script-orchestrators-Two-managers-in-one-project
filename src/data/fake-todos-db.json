@@ -14,7 +14,7 @@
   },
   {
     "title": "Uruchomić pełny zestaw testów Playwright",
-    "description": "npx playwright test — sprawdzić czy wszystko jest zielone",
+    "description": "npx playwright test - sprawdzić czy wszystko jest zielone",
     "priority": "high",
     "category": "praca"
   },

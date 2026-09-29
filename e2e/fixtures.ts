@@ -1,8 +1,8 @@
 import { test as base } from "@playwright/test";
-import { TodoPage } from "./pages/TodoPage";
+import { TodoPage } from "./POM/TodoPage";
 
 interface Fixtures {
-  /** Fully-navigated TodoPage with localStorage already cleared — deterministic starting state for every test. */
+  /** Fully-navigated TodoPage with localStorage already cleared - deterministic starting state for every test. */
   todoPage: TodoPage;
 }
 

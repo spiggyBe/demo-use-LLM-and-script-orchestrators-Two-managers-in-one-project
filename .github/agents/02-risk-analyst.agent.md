@@ -10,7 +10,7 @@ pójść źle, ZANIM ktokolwiek napisze kod.
 
 ## Ograniczenia
 
-- NIE projektujesz architektury ani nie implementujesz rozwiązań — tylko identyfikujesz ryzyko
+- NIE projektujesz architektury ani nie implementujesz rozwiązań - tylko identyfikujesz ryzyko
   i proponujesz kierunek mitygacji (1 zdanie na ryzyko).
 - NIE oceniasz jakości testów (to inny agent).
 - Zawsze rozważ specyfikę `localStorage`: limit pojemności (~5-10MB), brak synchronizacji między
@@ -19,15 +19,15 @@ pójść źle, ZANIM ktokolwiek napisze kod.
 
 ## Kategorie ryzyka do przeanalizowania
 
-1. **Techniczne** — złożoność, zależności, wydajność, zgodność z istniejącym kodem.
-2. **Bezpieczeństwo** — XSS przy renderowaniu danych użytkownika, walidacja danych z
+1. **Techniczne** - złożoność, zależności, wydajność, zgodność z istniejącym kodem.
+2. **Bezpieczeństwo** - XSS przy renderowaniu danych użytkownika, walidacja danych z
    `localStorage` (mogą być zmodyfikowane ręcznie przez użytkownika w DevTools), brak
    sanityzacji inputów.
-3. **Dane / trwałość** — utrata danych, przekroczenie limitu `localStorage`, brak migracji
+3. **Dane / trwałość** - utrata danych, przekroczenie limitu `localStorage`, brak migracji
    schematu przy zmianie struktury `Todo`.
-4. **UX / dostępność (a11y)** — czy zmiana psuje istniejące przepływy, czy jest dostępna
+4. **UX / dostępność (a11y)** - czy zmiana psuje istniejące przepływy, czy jest dostępna
    klawiaturowo i dla czytników ekranu.
-5. **Testowalność** — czy funkcjonalność da się łatwo pokryć testami Playwright (stabilne
+5. **Testowalność** - czy funkcjonalność da się łatwo pokryć testami Playwright (stabilne
    `data-testid`, deterministyczne stany).
 
 ## Sposób pracy

@@ -1,21 +1,21 @@
-# Strategia testowania — Test Orchestrator (Todo List)
+# Strategia testowania - Test Orchestrator (Todo List)
 
 ## Zakres i cele
 Aplikacja Todo List (Next.js + TypeScript + Tailwind) przechowuje dane wyłącznie w
-`localStorage` przeglądarki — brak backendu, bazy danych i API. Celem strategii jest zapewnienie,
+`localStorage` przeglądarki - brak backendu, bazy danych i API. Celem strategii jest zapewnienie,
 że każda funkcjonalność (dodawanie, edycja, usuwanie, filtrowanie, statystyki zadań) działa
 poprawnie, jest odporna na nieprawidłowe/nieoczekiwane dane w `localStorage` i jest pokryta
 testami na poziomie adekwatnym do ryzyka.
 
 ## Piramida testów
-1. **Statyczna analiza** (ESLint, TypeScript strict) — na każdą zmianę kodu, przed przejściem
+1. **Statyczna analiza** (ESLint, TypeScript strict) - na każdą zmianę kodu, przed przejściem
    do etapu testowania.
-2. **Testy E2E** (Playwright, przeglądarka Chromium) — kluczowe przepływy użytkownika: dodawanie,
+2. **Testy E2E** (Playwright, przeglądarka Chromium) - kluczowe przepływy użytkownika: dodawanie,
    edycja, usuwanie, oznaczanie ukończenia, filtrowanie, trwałość danych w `localStorage`.
-3. **Testy manualne eksploracyjne** — przypadki brzegowe trudne do zautomatyzowania (długie
+3. **Testy manualne eksploracyjne** - przypadki brzegowe trudne do zautomatyzowania (długie
    teksty, znaki specjalne, ręczna manipulacja `localStorage` w DevTools, dostępność).
 
-Brak testów jednostkowych/komponentowych i kontraktowych/API w obecnym zakresie projektu —
+Brak testów jednostkowych/komponentowych i kontraktowych/API w obecnym zakresie projektu -
 aplikacja nie ma warstwy backendowej ani wydzielonej logiki na tyle złożonej, by uzasadnić
 osobną warstwę testów komponentowych; logika stanu (`useTodos`) jest pokrywana pośrednio przez
 testy E2E.
@@ -45,11 +45,11 @@ Markdown jako źródło prawdy (ten plik); HTML/PDF generowane na żądanie (np.
 utrzymywane ręcznie równolegle.
 
 ## Role i odpowiedzialności
-- **Solution Architect** — implementuje kod i dba, by przechodził `npm run lint`.
-- **Test Plan Writer / Manual Test Designer** — definiują zakres i przypadki testowe per
+- **Solution Architect** - implementuje kod i dba, by przechodził `npm run lint`.
+- **Test Plan Writer / Manual Test Designer** - definiują zakres i przypadki testowe per
   funkcjonalność (`<slug>`).
-- **Automation Engineer** — automatyzuje przypadki o wysokim priorytecie w Playwright.
-- **QA Production Lead** — finalna brama jakości przed uznaniem zadania za gotowe.
+- **Automation Engineer** - automatyzuje przypadki o wysokim priorytecie w Playwright.
+- **QA Production Lead** - finalna brama jakości przed uznaniem zadania za gotowe.
 
 ## Historia zmian
 | Data | Zmiana |

@@ -74,7 +74,7 @@ export function useTodos() {
     setTodos((prev) => prev.filter((t) => !t.completed));
   }, []);
 
-  // Seeds todos from the fake "database" API route (src/app/api/seed-todos) — a
+  // Seeds todos from the fake "database" API route (src/app/api/seed-todos) - a
   // real fetch/response round-trip, used to demonstrate page.waitForResponse() in e2e tests.
   const seedFromFakeApi = useCallback(async () => {
     setSeedState({ loading: true, error: null });

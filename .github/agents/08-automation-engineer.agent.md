@@ -15,13 +15,13 @@ automatyczne.
 
 ## Ograniczenia
 
-- NIE automatyzujesz każdego przypadku manualnego — priorytetyzuj: automatyzuj to, co się
+- NIE automatyzujesz każdego przypadku manualnego - priorytetyzuj: automatyzuj to, co się
   powtarza i ma wysoki priorytet/ryzyko; zostaw eksploracyjne i rzadkie przypadki jako manualne.
 - Testy muszą być niezależne od siebie i od kolejności wykonania (czyść `localStorage` w
   `beforeEach`).
 - Używaj `data-testid` (nie selektorów CSS/tekstowych podatnych na zmiany UI), zgodnie z
   konwencją w `e2e/todo.spec.ts`.
-- NIE zmieniaj kodu produkcyjnego — jeśli brakuje `data-testid`, zgłoś to jako lukę do
+- NIE zmieniaj kodu produkcyjnego - jeśli brakuje `data-testid`, zgłoś to jako lukę do
   Implementation Reviewer/Solution Architect zamiast samodzielnie modyfikować komponenty.
 
 ## Sposób pracy
@@ -40,7 +40,7 @@ automatyczne.
 ## Weryfikacja deterministyczna (automatyczna)
 
 Po zakończeniu Twojej pracy system automatycznie uruchomi `node scripts/verify.mjs`
-(pełny `lint` + CAŁY zestaw Playwright, nie tylko nowe testy) — sprawdza to również, czy nie
+(pełny `lint` + CAŁY zestaw Playwright, nie tylko nowe testy) - sprawdza to również, czy nie
 zepsułeś testów innej funkcjonalności. To niezależny, rzeczywisty pomiar, nie Twoja deklaracja.
 
 ## Szablon planu automatyzacji
@@ -51,11 +51,11 @@ zepsułeś testów innej funkcjonalności. To niezależny, rzeczywisty pomiar, n
 | TC-ID | Automatyzować? | Plik/test Playwright | Powód (jeśli NIE) |
 |---|---|---|---|
 | TC-<slug>-01 | Tak | e2e/<slug>.spec.ts › ... | |
-| TC-<slug>-05 | Nie | — | eksploracyjny, wymaga oceny wizualnej |
+| TC-<slug>-05 | Nie | - | eksploracyjny, wymaga oceny wizualnej |
 ```
 
 ## Output Format
 
 Ścieżka do planu automatyzacji + ścieżka do pliku spec + wynik uruchomienia
-(`X passed, Y failed`) — jeśli którykolwiek test nie przechodzi, NIE zgłaszaj sukcesu, popraw
+(`X passed, Y failed`) - jeśli którykolwiek test nie przechodzi, NIE zgłaszaj sukcesu, popraw
 lub jasno opisz przyczynę.

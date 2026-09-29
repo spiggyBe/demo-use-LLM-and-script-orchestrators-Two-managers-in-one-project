@@ -39,7 +39,7 @@ bez usuwania i ponownego tworzenia zadania.
 ## Backlog zadań
 1. Dodać `updateTodo(id, changes)` do `useTodos` (aktualizacja z zachowaniem `id`/`createdAt`).
 2. Wydzielić współdzielone pola formularza (tytuł/opis/priorytet/kategoria/termin) do reużycia
-   między dodawaniem a edycją, jeśli to nie zwiększa nadmiernie złożoności — w przeciwnym razie
+      między dodawaniem a edycją, jeśli to nie zwiększa nadmiernie złożoności - w przeciwnym razie
    zaimplementować osobny inline formularz edycji w `TodoItem`.
 3. Dodać stan trybu edycji (`isEditing`) w `TodoItem` oraz przyciski "Edytuj" / "Zapisz" / "Anuluj".
 4. Podłączyć `onUpdate` przez `TodoList` → `TodoItem` → `page.tsx`.
@@ -48,6 +48,6 @@ bez usuwania i ponownego tworzenia zadania.
 
 ## Znane niepewności / pytania otwarte
 - Czy formularz edycji powinien współdzielić komponent z `TodoForm`, czy być osobnym,
-  uproszczonym komponentem inline? (decyzja należy do Solution Architect — patrz ADR).
+      uproszczonym komponentem inline? (decyzja należy do Solution Architect - patrz ADR).
 - Czy podczas edycji jednego zadania inne akcje na liście (toggle/delete/edycja innego zadania)
   powinny być zablokowane? Założenie: nie blokujemy, tylko jedno zadanie na raz w trybie edycji.

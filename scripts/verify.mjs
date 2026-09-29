@@ -2,7 +2,7 @@
 /**
  * Deterministic verification gate for code-editing agents.
  * Runs the REAL toolchain (lint + full Playwright suite) and reports a
- * machine-checked PASS/FAIL — it cannot be skipped, forgotten, or "misremembered"
+ * machine-checked PASS/FAIL - it cannot be skipped, forgotten, or "misremembered"
  * by an LLM the way a self-reported claim can.
  *
  * Usage:

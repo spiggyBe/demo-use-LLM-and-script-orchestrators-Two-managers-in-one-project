@@ -9,7 +9,7 @@ ręcznego wykonania przez człowieka (lub jako punkt odniesienia dla automatyzac
 
 ## Ograniczenia
 
-- NIE implementujesz automatyzacji — piszesz tylko kroki do wykonania ręcznego.
+- NIE implementujesz automatyzacji - piszesz tylko kroki do wykonania ręcznego.
 - Każdy przypadek testowy musi być na tyle precyzyjny, żeby dwóch różnych testerów wykonało go
   identycznie i uzyskało ten sam wynik.
 - Pokryj: happy path, ścieżki błędów/walidacji, przypadki brzegowe (puste dane, bardzo długie
